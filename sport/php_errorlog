@@ -1,0 +1,1 @@
+[13-Feb-2019 16:08:18 CST6CDT] PHP Fatal error:  Cannot redeclare Staff_management::change_status() in /home/adinstud/public_html/freebigdisplay.com/application/controllers/Staff_management.php on line 340

@@ -1,0 +1,43 @@
+  
+    <div class="x_panel" ng-init="rCtrl.passStd()" >
+        <div class="x_title" >
+          <h2>Student</h2><a ui-sref="student/add" class="btn btn-primary" style="margin-left: 4%;">Add New Student</a>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="dropdown">
+              <input type="text" class="form-control" ng-model="search_s" placeholder="Search.." />  
+            </li>
+          
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student name</th>
+                <th>Examiner name</th>
+                <th>Theory pass date</th>
+                <th>Theory pass %</th>
+                <th>Practical pass date</th>
+                <th>Practical pass %</th>
+                <th>No. of attempt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="passStd in rCtrl.passStds | filter:search_s ">
+                <td>{{ passStd.id }}</td>
+                <td>{{ passStd.first_name }}</td>
+                <td>{{ passStd.name }}</td>
+                <td>{{ passStd.theory_date }}</td>
+                <td>{{ (100 / passStd.theory_no != 'Infinity') ? 100 / passStd.theory_no : 0  | decimal  }}%</td>
+                <td>{{ passStd.practical_date }}</td>
+                <td>{{ (100 / passStd.practical_no != 'Infinity') ? 100 / passStd.practical_no : 20 | decimal }}%</td>
+                <td>{{ passStd.theory_no }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>

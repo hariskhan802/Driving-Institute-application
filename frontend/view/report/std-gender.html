@@ -1,0 +1,33 @@
+
+    <div class="x_panel" ng-init="rCtrl.genderStd()" >
+        <div class="x_title" >
+          <h2>Student</h2><a ui-sref="student/add" class="btn btn-primary" style="margin-left: 4%;">Add New Student</a>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="dropdown">
+              <!-- <input type="text" class="form-control" ng-model="search_s" placeholder="Search.." />   -->
+            </li>
+          
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          
+          <table class="table table-striped" style="text-align: center;">
+            <thead>
+              <tr>
+                <td>Male</td>
+                <td>Female</td>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td><h1>{{ rCtrl.genderPerc.mailAvr | decimal }}%</h1></td>
+                <td><h1>{{ rCtrl.genderPerc.femaleAvr | decimal }}%</h1></td>
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>

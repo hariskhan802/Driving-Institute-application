@@ -1,0 +1,35 @@
+
+    <div class="x_panel" ng-init="rCtrl.exStd()" >
+        <div class="x_title" >
+           <h2>Student</h2><a ui-sref="student/add" class="btn btn-primary" style="margin-left: 4%;">Add New Student</a>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="dropdown">
+              <input type="text" class="form-control" ng-model="search_e" placeholder="Search.." />  
+            </li>
+          
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Examiner</th>
+                <th>Student Pass %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ex in rCtrl.examStds | filter:search_e ">
+                <td>{{ ex.examiner_id }}</td>
+                <td>{{ ex.name }}</td>
+                <td>{{ ex.pass * 100 / ex.count | decimal  }}%</td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>

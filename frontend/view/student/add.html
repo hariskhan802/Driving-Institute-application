@@ -1,0 +1,570 @@
+<div class="x_panel cus-form">
+    <div class="x_title">
+        <h2>Student</h2><a ui-sref="student" class="btn btn-primary" style="margin-left: 4%;">View Student</a>
+        <ul class="nav navbar-right panel_toolbox">
+            
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content" >
+        <br>
+        <form method="post" novalidate="novalidate"  class="form-horizontal form-label-left" id="add-form" ng-submit="sCtrl.addStd()" ng-init="sCtrl.theory_practical('t');sCtrl.theory_practical('p');sCtrl.examiner_list()" enctype="multipart/form-data">
+        	<div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-12 col-sm-12 col-xs-12">
+		                <label class="control-label ">CPR nr.</label>
+	                    <input type="text" ng-model="sCtrl.f.social_sec_no" class="form-control"  ng-blur="sCtrl.strToDate()"  placeholder="CPR nr. " required="">
+		        	</div>
+	            	
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Fornavn</label>
+	                    <input type="text" ng-model="sCtrl.f.first_name" class="form-control" placeholder="Fornavn" required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Efternavn</label>
+	                    <input type="text" ng-model="sCtrl.f.last_name" class="form-control" placeholder="Efternavn " required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Alder</label>
+	                    <input type="text" ng-model="sCtrl.f.age" class="form-control "  placeholder="Alder" required="" ng-change="sCtrl.makeSSN()">
+	                    <span>{{ sCtrl.ageStatus }}</span>
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Alder ok</label>
+	                    <input type="text" ng-model="sCtrl.f.age_status_ok" class="form-control "   ng-change="sCtrl.makeSSN()"  placeholder="Alder ok" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Køn</label>
+	                    <select class="form-control" ng-model="sCtrl.f.gender">
+	                    	<option value="Han">Han</option>
+	                    	<option value="Hun">Hun</option>
+	                    </select>
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Email adresse</label>
+	                    <input type="text" ng-model="sCtrl.f.mail_address" class="form-control" placeholder="Email adresse" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Mobil nr. </label>
+	                    <input type="text" ng-model="sCtrl.f.cell_no" class="form-control" placeholder="Mobil nr." required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Beskæftigelse</label>
+	                    <input type="text" ng-model="sCtrl.f.occupation" class="form-control" placeholder="Beskæftigelse" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Køreskole navn </label>
+	                    <input type="text" ng-model="sCtrl.f.driving_school_name" class="form-control" placeholder="Køreskole navn" required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">afdeling</label>
+	                    <input type="text" ng-model="sCtrl.f.department" class="form-control" placeholder="afdeling" required="">
+		        	</div>
+		        </div>
+            </div>
+            
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Kørekort type</label>
+	                    <!-- <input type="text" ng-model="sCtrl.f.license_category" class="form-control" placeholder="Kørekort type" required=""> -->
+		        		<select ng-model="sCtrl.f.license_category" class="form-control" >
+		        			<option value="Bil">Bil</option>	
+		        			<option value="Lyn">Lyn</option>	
+		        			<option value="Generhverv">Generhverv</option>	
+		        			<option value="Engelsk">Engelsk</option>	
+		        		</select>
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Start dato.</label>
+	                    <input type="text" ng-model="sCtrl.f.start_date" class="form-control " ng-change="sCtrl.spendDay()" datepicker placeholder="Start dato." required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Slut dato </label>
+	                    <input type="text" ng-model="sCtrl.f.finish_date" class="form-control " ng-change="sCtrl.spendDay()"  datepicker placeholder="Slut dato" required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Antal dage brugt</label>
+	                    <input type="text" ng-model="sCtrl.f.no_of_days_spent" class="form-control" placeholder="Antal dage brugt" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Antal ekstra lekioner </label>
+	                    <input type="text" ng-model="sCtrl.f.no_of_extra_lessons" class="form-control" placeholder="Antal ekstra lekioner" required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Kørelektions pris</label>
+	                    <input type="text" ng-model="sCtrl.f.session_rate" class="form-control" placeholder="Kørelektions pris" required="">
+		        	</div>
+		        </div>
+            </div>
+             <div class="form-group">
+	            <div class="row"  >
+	            	<div class="col-md-12 col-sm-12 col-xs-12" >
+		                <label class="control-label ">Total pris</label>
+	                    <input type="text" ng-model="sCtrl.f.total_pris" ng-value="((sCtrl.f.no_of_extra_lessons || 0) * (sCtrl.f.session_rate || 0))  || ''" class="form-control" placeholder="Total pris" required="">
+		        	</div>
+	            	
+		        </div>
+            </div>
+            
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Forløb status </label>
+	                   	<select ng-model="sCtrl.f.current_course_status" class="form-control ">
+	                   		<option value="active">Active</option>
+	                   		<option value="inactive">Inactive</option>
+	                   	</select>
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Manøvrebane dato</label>
+	                    <input type="text" ng-model="sCtrl.f.close_track_date" class="form-control " datepicker placeholder="Manøvrebane dato" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Førstehjælpskursus dato </label>
+	                    <input type="text" ng-model="sCtrl.f.first_aid_course_date" class="form-control " datepicker placeholder="Førstehjælpskursus dato" required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">glatbane dato</label>
+	                    <input type="text" ng-model="sCtrl.f.slippery_course_date" class="form-control " datepicker placeholder="glatbane dato" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Teoriprøve dato nr. 1</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_1"  ng-change="sCtrl.theory_practical('t')"  class="form-control " datepicker placeholder="Teoriprøve dato nr. 1" required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_1"  ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 1" required="">
+	                    	<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.tfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Teoriprøve dato nr. 2</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_2" ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 2" datepicker required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_2" ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 2" required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            </div>
+            </div>
+            <div class="form-group"  ng-if="sCtrl.tfg.indexOf(3) != -1 && sCtrl.tfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Teoriprøve dato nr. 3</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_3" ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 3" datepicker required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_3" ng-change="sCtrl.theory_practical('t')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.tfg.indexOf(4) != -1 && sCtrl.tfg.indexOf(3) != -1 && sCtrl.tfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Teoriprøve dato nr. 4</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_4" ng-change="sCtrl.theory_practical('t')"  class="form-control " datepicker placeholder="Teoriprøve dato nr. 4" required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_4" ng-change="sCtrl.theory_practical('t')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.tfg.indexOf(5) != -1 && sCtrl.tfg.indexOf(4) != -1 && sCtrl.tfg.indexOf(3) != -1 && sCtrl.tfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Teoriprøve dato nr. 5</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_5" ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 5" datepicker required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_5" ng-change="sCtrl.theory_practical('t')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.tfg.indexOf(6) != -1 && sCtrl.tfg.indexOf(5) != -1 && sCtrl.tfg.indexOf(4) != -1 && sCtrl.tfg.indexOf(3) != -1 && sCtrl.tfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Teoriprøve dato nr. 6</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_6" ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 6" datepicker required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_6" ng-change="sCtrl.theory_practical('t')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.tfg.indexOf(7) != -1 && sCtrl.tfg.indexOf(6) != -1 && sCtrl.tfg.indexOf(5) != -1 && sCtrl.tfg.indexOf(4) != -1 && sCtrl.tfg.indexOf(3) != -1 && sCtrl.tfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Teoriprøve dato nr. 7</label>
+	                    <input type="text" ng-model="sCtrl.f.theory_test_date_no_7" ng-change="sCtrl.theory_practical('t')"  class="form-control " placeholder="Teoriprøve dato nr. 7" datepicker required="">
+		        	</div>
+		        	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.theory_test_passorfail_no_7" ng-change="sCtrl.theory_practical('t')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 1</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_1" ng-change="sCtrl.theory_practical('p')"  class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 1" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_1"  ng-change="sCtrl.theory_practical('p')" class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select  ng-model="sCtrl.f.examiners_name_1" ng-change="sCtrl.theory_practical('p')"   class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+	                    
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <select class="form-control" ng-model="sCtrl.f.district_1"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_1" ng-change="sCtrl.theory_practical('p')"  class="form-control" placeholder="By" required="">
+		        	</div>
+		        	
+		        </div>
+            </div>
+            <div class="form-group"  ng-if="sCtrl.pfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 2</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_2" ng-change="sCtrl.theory_practical('p')" class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 2" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_2" class="form-control " ng-change="sCtrl.theory_practical('p')"  required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select ng-model="sCtrl.f.examiners_name_2" ng-change="sCtrl.theory_practical('p')"  class="form-control" required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <select class="form-control" ng-model="sCtrl.f.district_2"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_2" ng-change="sCtrl.theory_practical('p')"  class="form-control" placeholder="By" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.pfg.indexOf(3) != -1 && sCtrl.pfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 3</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_3" ng-change="sCtrl.theory_practical('p')"  class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 3" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_3" ng-change="sCtrl.theory_practical('p')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select ng-model="sCtrl.f.examiners_name_3" ng-change="sCtrl.theory_practical('p')"  class="form-control" required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <!-- <input type="text" ng-model="sCtrl.f.district_3" ng-change="sCtrl.theory_practical('p')"  class="form-control" placeholder="Distrikt" required=""> -->
+	                    <select class="form-control" ng-model="sCtrl.f.district_3"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_3"  ng-change="sCtrl.theory_practical('p')" class="form-control" placeholder="By" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.pfg.indexOf(4) != -1 && sCtrl.pfg.indexOf(3) != -1 && sCtrl.pfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 4</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_4" class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 4" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_4" class="form-control " ng-change="sCtrl.theory_practical('p')"  required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select ng-model="sCtrl.f.examiners_name_4" ng-change="sCtrl.theory_practical('p')"  class="form-control" required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <!-- <input type="text" ng-model="sCtrl.f.district_4"  ng-change="sCtrl.theory_practical('p')" class="form-control" placeholder="Distrikt" required=""> -->
+	                    <select class="form-control" ng-model="sCtrl.f.district_4"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_4" ng-change="sCtrl.theory_practical('p')"  class="form-control" placeholder="By" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.pfg.indexOf(5) != -1 && sCtrl.pfg.indexOf(4) != -1 && sCtrl.pfg.indexOf(3) != -1 && sCtrl.pfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 5</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_5"  ng-change="sCtrl.theory_practical('p')" class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 5" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_5" ng-change="sCtrl.theory_practical('p')"  class="form-control " required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select ng-model="sCtrl.f.examiners_name_5" ng-change="sCtrl.theory_practical('p')"  class="form-control" required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <select class="form-control" ng-model="sCtrl.f.district_5"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_5" ng-change="sCtrl.theory_practical('p')"  class="form-control" placeholder="By" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.pfg.indexOf(6) != -1 && sCtrl.pfg.indexOf(5) != -1 && sCtrl.pfg.indexOf(4) != -1 && sCtrl.pfg.indexOf(3) != -1 && sCtrl.pfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 6</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_6" ng-change="sCtrl.theory_practical('p')"  class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 6" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_6" class="form-control " ng-change="sCtrl.theory_practical('p')"  required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select ng-model="sCtrl.f.examiners_name_6" ng-change="sCtrl.theory_practical('p')"  class="form-control" required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <!-- <input type="text" ng-model="sCtrl.f.district_6" class="form-control" ng-change="sCtrl.theory_practical('p')"  placeholder="Distrikt" required=""> -->
+		        		<select class="form-control" ng-model="sCtrl.f.district_6"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_6" class="form-control" ng-change="sCtrl.theory_practical('p')"  placeholder="By" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group" ng-if="sCtrl.pfg.indexOf(7) != -1 && sCtrl.pfg.indexOf(6) != -1 && sCtrl.pfg.indexOf(5) != -1 && sCtrl.pfg.indexOf(4) != -1 && sCtrl.pfg.indexOf(3) != -1 && sCtrl.pfg.indexOf(2) != -1">
+	            <div class="row">
+	            	<div class="col-md-4 col-sm-4 col-xs-12">
+		                <label class="control-label ">Praktisk prøve dato nr. 7</label>
+	                    <input type="text" ng-model="sCtrl.f.practical_test_date_no_7" ng-change="sCtrl.theory_practical('p')"  class="form-control  " datepicker placeholder="Praktisk prøve dato nr. 7" required="">
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Bestået eller ej</label>
+	                    <select ng-model="sCtrl.f.practical_test_pf_7" class="form-control " ng-change="sCtrl.theory_practical('p')"  required="">
+		        			<option value=""></option>
+		        			<option value="pass">Bestået</option>
+		        			<option value="fail">Dumpet</option>
+		        		</select>
+		        	</div>
+	            	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Sagkyndigs navn</label>
+	                    <select ng-model="sCtrl.f.examiners_name_7" ng-change="sCtrl.theory_practical('p')"  class="form-control" required="">
+		        			<option value=""></option>
+		        			<option value="{{examiner.id}}" ng-repeat="examiner in sCtrl.examiners">{{examiner.name}}</option>
+		        		</select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">Distrikt</label>
+	                    <!-- <input type="text" ng-model="sCtrl.f.district_7"  ng-change="sCtrl.theory_practical('p')" class="form-control" placeholder="Distrikt" required="" > -->
+	                    <select class="form-control" ng-model="sCtrl.f.district_7"  ng-change="sCtrl.theory_practical('p')">
+	                    	<option>København</option>
+	                    	<option>Nordsjælland</option>
+	                    	<option>Vestsjælland</option>
+	                    	<option>Sydsjælland</option>
+	                    </select>
+		        	</div>
+		        	<div class="col-md-2 col-sm-2 col-xs-12">
+		                <label class="control-label">By</label>
+	                    <input type="text" ng-model="sCtrl.f.town_7" ng-change="sCtrl.theory_practical('p')"  class="form-control" placeholder="By" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Faktura dato</label>
+	                    <input type="text" ng-model="sCtrl.f.invoice_date" class="form-control " datepicker placeholder="Faktura dato" required="">
+		        	</div>
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label">Faktura beløb</label>
+	                    <input type="text" ng-model="sCtrl.f.invoice_amount" class="form-control" placeholder="Faktura beløb" required="">
+		        	</div>
+		        </div>
+            </div>
+            <div class="form-group">
+	            <div class="row">
+	            	<div class="col-md-6 col-sm-6 col-xs-12">
+		                <label class="control-label ">Gennemført eller ej</label>
+	                    <select ng-model="sCtrl.f.completed_or_not" class="form-control"  required="">
+		        			<option value="0">No</option>
+		        			<option value="1">Yes</option>
+		        		</select>
+		        	</div>
+	            	
+		        </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

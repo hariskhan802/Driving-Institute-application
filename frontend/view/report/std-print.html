@@ -1,0 +1,64 @@
+
+    <div class="x_panel" ng-init="rCtrl.printStd()" >
+        <div class="x_title" >
+          <div class="print-div">
+            <h2>Student</h2>
+            <a ui-sref="student/add" class="btn btn-primary" style="margin-left: 4%;">Add New Student</a>
+          </div>
+           <form method="post" class="form-print" ng-submit="rCtrl.printStdData()"> 
+          <ul class="nav print-drop panel_toolbox">
+            
+              <!-- <li>
+                <select class="form-control" ng-model="rCtrl.printopt" required="">
+                  <option value="">Select</option>
+                  <option value="print-pdf">Print PDF</option>
+                  <option value="print-hard-copy">Print Hard Copy</option>
+                </select>
+              </li> -->
+              <li><input type="submit" name="" class="btn btn-primary btn-print" value="Print"></li>
+             
+          </ul>
+           </form>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="dropdown">
+              
+              <li class="dropdown">
+                <input type="text" class="form-control" ng-model="search_s" placeholder="Search.." />  
+              </li>
+
+            </li>
+            
+          
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          
+          <table class="table table-striped" id="print-r">
+            <thead>
+              <tr>
+                <th><input type="checkbox" ng-model="rCtrl.select_all" ng-click="rCtrl.printCheckAll()"  /></th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Social sec. No</th>
+                <th>Cell No.</th>
+                <th>Invoice amount</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr ng-repeat="printStd in rCtrl.printStds | filter:search_s ">
+                <td><input type="checkbox" ng-model="rCtrl.std.s[printStd.id]" ng-value="printStd.id" /></td>
+                <td>{{ printStd.id }}</td>
+                <td>{{ printStd.first_name }}</td>
+                <td>{{ printStd.social_sec_no }}</td>
+                <td>{{ printStd.cell_no }}</td>
+                <td>{{ printStd.invoice_amount }}</td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>

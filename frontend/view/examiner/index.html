@@ -1,0 +1,37 @@
+
+    <div class="x_panel" ng-init="eCtrl.allEx()" >
+        <div class="x_title" >
+          <h2>Examiner</h2><a ui-sref="examiner/add" class="btn btn-primary" style="margin-left: 4%;">Add New Examiner</a>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="dropdown">
+              <input type="text" class="form-control" ng-model="search_e" placeholder="Search.." />  
+            </li>
+          
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <table class="table table-striped" ng-init="tCon.getTiming()">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Examiner</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ex in eCtrl.exs | filter:search_e ">
+                <td>{{ ex.id }}</td>
+                <td>{{ ex.name }}</td>
+                <td><a  ui-sref="examiner/edit({id : ex.id })" class="btn btn-primary">Edit</a></td>
+                <td><a ng-click="eCtrl.deletEx(ex.id)" class="btn btn-danger">Delete</a></td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>

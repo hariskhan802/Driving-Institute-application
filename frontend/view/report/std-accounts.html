@@ -1,0 +1,42 @@
+
+    <div class="x_panel" ng-init="rCtrl.accountStd()" >
+        <div class="x_title" >
+          <h2>Student</h2><a ui-sref="student/add" class="btn btn-primary" style="margin-left: 4%;">Add New Student</a>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="dropdown">
+              <input type="text" class="form-control" ng-model="search_s" placeholder="Search.." />  
+            </li>
+          
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Social sec. No</th>
+                <th>Cell No.</th>
+                <th>Invoice amount</th>
+                <th>Invoice date</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr ng-repeat="accountStd in rCtrl.accountStds | filter:search_s ">
+                <td>{{ accountStd.id }}</td>
+                <td>{{ accountStd.first_name+' '+accountStd.last_name }}</td>
+                <td>{{ accountStd.social_sec_no }}</td>
+                <td>{{ accountStd.cell_no }}</td>
+                <td>{{ accountStd.invoice_amount }}</td>
+                <td>{{ accountStd.invoice_date }}</td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+
+        </div>
+      </div>
